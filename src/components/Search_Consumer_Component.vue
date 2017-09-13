@@ -11,7 +11,7 @@
             :inputClasses="'text-left'"
             :placeholderValue="'Zip Code'"
             :textInputTitle="'Zip Code'"
-            :titleClasses="'cust-bot-marg-0 cust-top-marg-5'"
+            :titleClasses="'cust-marg-bot-0 cust-marg-top-5'"
           ></text-input-field-component>
           <!-- Phone number input -->
           <text-input-field-component
@@ -20,7 +20,7 @@
             :inputClasses="'text-left'"
             :placeholderValue="'(###) ###-####'"
             :textInputTitle="'Phone Number'"
-            :titleClasses="'cust-bot-marg-0 cust-top-marg-5'"
+            :titleClasses="'cust-marg-bot-0 cust-marg-top-5'"
           ></text-input-field-component>
           <!-- Email input -->
           <text-input-field-component
@@ -29,7 +29,7 @@
             :inputClasses="''"
             :placeholderValue="'example@email.com'"
             :textInputTitle="'Email Address'"
-            :titleClasses="'cust-bot-marg-0 cust-top-marg-5'"
+            :titleClasses="'cust-marg-bot-0 cust-marg-top-5'"
           ></text-input-field-component>
         </div>
       </div>
@@ -40,7 +40,7 @@
             :buttonTitle="'Search'"
             :buttonValue="'testButtonValue'"
             :clickFunction="searchConsumerFunction"
-            :containerClasses="'text-right cust-top-marg-15'"
+            :containerClasses="'text-right cust-marg-top-15'"
             :idValue="'searchButtonId'"
           ></button-component>
         </div>

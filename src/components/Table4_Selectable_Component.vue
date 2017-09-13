@@ -1,5 +1,5 @@
 <template>
-  <div id="table3SelectableComponent" class="row">
+  <div id="table4SelectableComponent" class="row">
     <div class="col-sm-12">
       <p :class="titleClasses">{{ tableTitle }}:</p>
       <table :class="tableClasses">
@@ -13,6 +13,9 @@
             </th>
             <th>
               {{ columnName3 }}
+            </th>
+            <th>
+              {{ columnName4 }}
             </th>
           </tr>
         </thead>
@@ -28,8 +31,9 @@
 
 <script>
   export default {
-    name: 'table3SelectableComponent',
-    props: ['columnName1', 'columnName2', 'columnName3', 'dataArray', 'tableClasses', 'tableTitle', 'titleClasses'],
+    name: 'table4SelectableComponent',
+    props: ['columnName1', 'columnName2', 'columnName3', 'columnName4', 'dataArray', 'tableClasses', 'tableTitle',
+      'titleClasses'],
     data () {
       return {}
     }
