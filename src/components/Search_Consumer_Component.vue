@@ -1,8 +1,8 @@
 <template>
-  <div id="searchConsumer" class="row">
+  <div id="searchConsumerComponent" class="form-group row">
     <div class="col-sm-12">
       <div class="row">
-        <div class="col-sm-5 col-sm-offset-1">
+        <div class="col-sm-6">
           <h3 class="text-left">Search For Consumer</h3>
           <!-- Zip code input -->
           <text-input-field-component
@@ -40,7 +40,7 @@
             :buttonTitle="'Search'"
             :buttonValue="'testButtonValue'"
             :clickFunction="searchConsumerFunction"
-            :containerClasses="'cust-top-marg-15'"
+            :containerClasses="'text-right cust-top-marg-15'"
             :idValue="'searchButtonId'"
           ></button-component>
         </div>
@@ -58,7 +58,7 @@
       'button-component': ButtonComponent,
       'text-input-field-component': TextInputFieldComponent
     },
-    name: 'searchConsumer',
+    name: 'searchConsumerComponent',
     props: ['consumers'],
     data () {
       return {}

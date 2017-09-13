@@ -1,5 +1,5 @@
 <template>
-  <div class="testButton">
+  <div id="buttonComponent">
     <div :class="containerClasses">
       <button :id="idValue" :class="buttonClasses" :value="buttonValue" type="button"
               v-on:click="clickFunction">{{ buttonTitle }}</button>
@@ -9,7 +9,7 @@
 
 <script>
   export default {
-    name: 'testButton',
+    name: 'buttonComponent',
     props: ['buttonClasses', 'buttonTitle', 'buttonValue', 'clickFunction', 'containerClasses', 'idValue'],
     data () {
       return {}
