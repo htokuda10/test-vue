@@ -2,7 +2,7 @@
   <div class="serviceRequest cust-marg-left-15 cust-marg-right-15">
     <div class="row">
       <div class="col-sm-12">
-        <h2>Service Request</h2>
+        <h1>Service Request</h1>
       </div>
     </div>
     <div class="row">
@@ -26,10 +26,11 @@
             :titleClasses="'text-left'"
           ></table5-selectable_component>
         </div>
+        <additional-project-info-component></additional-project-info-component>
       </div>
       <div class="col-sm-3">
         <service-professional-info-card-component
-          :spData="serviceProfesional"
+          :spData="serviceProfessional"
         ></service-professional-info-card-component>
         <consumer-info-card-component
           :consumerData="consumerSelected"
@@ -40,13 +41,18 @@
 </template>
 
 <script>
+  import AdditionalProjectInfoComponent from '@/components/Additional_Project_Info_Component'
   import ConsumerInfoCardComponent from '@/components/Consumer_Info_Card_Component'
   import SearchConsumerComponent from '@/components/Search_Consumer_Component'
   import ServiceProfessionalInfoCardComponent from '@/components/Service_Professional_Info_Card_Component'
+  import ServiceRequestDataClass from '../../static/js/ServiceRequestData'
   import Table5SelectableComponent from '@/components/Table5_Selectable_Component'
+
+  let ServiceRequestData = new ServiceRequestDataClass()
 
   export default {
     components: {
+      'additional-project-info-component': AdditionalProjectInfoComponent,
       'consumer-info-card-component': ConsumerInfoCardComponent,
       'search-consumer_component': SearchConsumerComponent,
       'service-professional-info-card-component': ServiceProfessionalInfoCardComponent,
@@ -55,70 +61,19 @@
     name: 'serviceRequest',
     data () {
       return {
-        consumers: [
-          {
-            email: 'jsmith@email.com',
-            firstName: 'John',
-            id: '1',
-            lastName: 'Smith',
-            phone: '(303) 555-1234',
-            state: 'CO',
-            street: '1 Street Ave.',
-            zipCode: '80123'
-          },
-          {
-            email: 'jDoe@email.com',
-            firstName: 'Jane',
-            id: '2',
-            lastName: 'Doe',
-            phone: '(303) 555-1234',
-            state: 'CA',
-            street: '2 Street Ave.',
-            zipCode: '80234'
-          },
-          {
-            email: 'bAnderson@email.com',
-            firstName: 'Bob',
-            id: '3',
-            lastName: 'Anderson',
-            phone: '(303) 555-1234',
-            state: 'DE',
-            street: '3 Street Ave.',
-            zipCode: '80345'
-          },
-          {
-            email: 'bJones@email.com',
-            firstName: 'Barb',
-            id: '4',
-            lastName: 'Jones',
-            phone: '(303) 555-1234',
-            state: 'WA',
-            street: '4 Street Ave.',
-            zipCode: '80456'
-          }
-        ],
-        consumerSelected: {
-          email: 'jsmith@email.com',
-          firstName: 'John',
-          id: '1',
-          lastName: 'Smith',
-          phone: '(303) 555-1234',
-          state: 'CO',
-          street: '1 Street Ave.',
-          zipCode: '80123'
-        },
-        serviceProfesional: {
-          affiliate: 'Thor',
-          callUniqueId: '123123123',
-          numberCalled: '(555) 555-5556',
-          serverId: 'Infinity',
-          spId: '12345',
-          spLocation: 'Hello, WO',
-          spName: 'ABC Company',
-          spPhone: '(555) 555-5555',
-          spRating: '4.8',
-          spRatings: '10'
-        }
+        consumers: ServiceRequestData.getConsumersList(),
+        consumerSelected: {},
+//        consumerSelected: {
+//          email: 'jsmith@email.com',
+//          firstName: 'John',
+//          id: '1',
+//          lastName: 'Smith',
+//          phone: '(303) 555-1234',
+//          state: 'CO',
+//          street: '1 Street Ave.',
+//          zipCode: '80123'
+//        },
+        serviceProfessional: ServiceRequestData.getServiceProfessional()
       }
     }
   }

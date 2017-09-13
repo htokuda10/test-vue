@@ -3,7 +3,7 @@
     <div class="col-sm-12">
       <div class="row">
         <div class="col-sm-6">
-          <h3 class="text-left">Search For Consumer</h3>
+          <h3>Search For Consumer</h3>
           <!-- Zip code input -->
           <text-input-field-component
             :containerClasses="'text-left'"
@@ -34,7 +34,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-5 col-sm-offset-1">
+        <div class="col-sm-6">
           <button-component
             :buttonClasses="''"
             :buttonTitle="'Search'"
@@ -58,15 +58,15 @@
       'button-component': ButtonComponent,
       'text-input-field-component': TextInputFieldComponent
     },
-    name: 'searchConsumerComponent',
-    props: ['consumers'],
-    data () {
-      return {}
-    },
     methods: {
       searchConsumerFunction: function () {
         console.log('Searching for consumers...')
       }
+    },
+    name: 'searchConsumerComponent',
+    props: ['consumers'],
+    data () {
+      return {}
     }
   }
 </script>

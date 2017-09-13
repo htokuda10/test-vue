@@ -6,7 +6,7 @@
           <h4>Consumer Profile Selected</h4>
         </div>
       </div>
-      <div class="panel-body">
+      <div class="panel-body" v-if="consumerData && consumerData.length > 0">
         <div class="row">
           <div class="col-sm-12">
             <h3 class="cust-info-name">{{ consumerData.firstName }} {{ consumerData.lastName }}</h3>
