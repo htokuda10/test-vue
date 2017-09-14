@@ -1,9 +1,7 @@
 <template>
-  <div id="inputTextFieldComponent">
-    <div :class="containerClasses">
-      <p :class="titleClasses">{{ textInputTitle }}:</p>
-      <input :id="idValue" :class="inputClasses" :placeholder="placeholderValue" type="text">
-    </div>
+  <div :class="containerClasses">
+    <p :class="titleClasses">{{ textInputTitle }}:</p>
+    <input :id="idValue" :class="inputClasses" :placeholder="placeholderValue" type="text">
   </div>
 </template>
 

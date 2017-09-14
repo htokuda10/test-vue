@@ -1,5 +1,5 @@
 <template>
-  <div id="serviceProfessionalInfoCardComponent" class="form-group row">
+  <div class="form-group row">
     <div class="col-sm-12 cust-info-card">
       <div class="panel panel-warning cust-info-header-cont">
         <div class="panel-heading">

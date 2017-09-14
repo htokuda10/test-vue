@@ -1,12 +1,12 @@
 <template>
-  <div id="consumerInfoCardComponent" class="form-group row">
+  <div class="form-group row">
     <div class="col-sm-12 cust-info-card">
       <div class="panel panel-success cust-info-header-cont">
         <div class="panel-heading">
           <h4>Consumer Profile Selected</h4>
         </div>
       </div>
-      <div class="panel-body" v-if="consumerData && consumerData.length > 0">
+      <div class="panel-body">
         <div class="row">
           <div class="col-sm-12">
             <h3 class="cust-info-name">{{ consumerData.firstName }} {{ consumerData.lastName }}</h3>

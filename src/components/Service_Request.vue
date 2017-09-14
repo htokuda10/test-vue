@@ -7,9 +7,15 @@
     </div>
     <div class="row">
       <div class="col-sm-9">
-        <search-consumer_component :consumers="consumers"></search-consumer_component>
+        <!-- TODO The initial visible value can be set based on retrieved values. This will be hardcoded
+        for now for testing functionality. -->
+        <search-consumer_component
+          :consumers="consumers"
+          :initialVisible="false"
+        ></search-consumer_component>
         <div v-if="consumers && consumers.length > 0">
           <table5-selectable_component
+            :clickFunction="consumerTableSelectClickFunction"
             :columnKey1="'firstName'"
             :columnKey2="'lastName'"
             :columnKey3="'state'"
@@ -22,7 +28,7 @@
             :columnName5="'Email'"
             :dataArray="consumers"
             :tableClasses="'table table-hover'"
-            :tableTitle="'Multiple consumers found, please select a consumer from the list below'"
+            :tableTitle="'Multiple consumers found, please select a consumer'"
             :titleClasses="'text-left'"
           ></table5-selectable_component>
         </div>
@@ -58,21 +64,20 @@
       'service-professional-info-card-component': ServiceProfessionalInfoCardComponent,
       'table5-selectable_component': Table5SelectableComponent
     },
+    methods: {
+      /**
+       * consumerTableSelectClickFunction will update the consumer selected object when the user clicks on a consumer
+       * in the consumer table.
+       */
+      consumerTableSelectClickFunction: function (selectedObject) {
+        this.consumerSelected = selectedObject
+      }
+    },
     name: 'serviceRequest',
     data () {
       return {
         consumers: ServiceRequestData.getConsumersList(),
         consumerSelected: {},
-//        consumerSelected: {
-//          email: 'jsmith@email.com',
-//          firstName: 'John',
-//          id: '1',
-//          lastName: 'Smith',
-//          phone: '(303) 555-1234',
-//          state: 'CO',
-//          street: '1 Street Ave.',
-//          zipCode: '80123'
-//        },
         serviceProfessional: ServiceRequestData.getServiceProfessional()
       }
     }

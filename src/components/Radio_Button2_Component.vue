@@ -1,12 +1,10 @@
 <template>
-  <div id="radioButtonComponent">
-    <div :class="containerClasses">
-      <p :class="titleClasses">{{ radioButtonTitle }}:</p>
-      <label :for="idValue1">{{ radioButtonLabel1 }}</label>
-      <input :id="idValue1" :class="radioButtonClasses" :name="radioButtonName" :value="radioButtonValue1" type="radio">
-      <label :for="idValue2">{{ radioButtonLabel2 }}</label>
-      <input :id="idValue2" :class="radioButtonClasses" :name="radioButtonName" :value="radioButtonValue2" type="radio">
-    </div>
+  <div :class="containerClasses">
+    <p :class="titleClasses">{{ radioButtonTitle }}:</p>
+    <label :for="idValue1">{{ radioButtonLabel1 }}</label>
+    <input :id="idValue1" :class="radioButtonClasses" :name="radioButtonName" :value="radioButtonValue1" type="radio">
+    <label :for="idValue2">{{ radioButtonLabel2 }}</label>
+    <input :id="idValue2" :class="radioButtonClasses" :name="radioButtonName" :value="radioButtonValue2" type="radio">
   </div>
 </template>
 
