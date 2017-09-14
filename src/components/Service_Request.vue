@@ -11,7 +11,7 @@
         for now for testing functionality. -->
         <search-consumer_component
           :consumers="consumers"
-          :initialVisible="false"
+          :isContentVisible="false"
         ></search-consumer_component>
         <div v-if="consumers && consumers.length > 0">
           <table5-selectable_component
@@ -27,6 +27,8 @@
             :columnName4="'Phone'"
             :columnName5="'Email'"
             :dataArray="consumers"
+            :isContentVisible="true"
+            :isTabCollapsible="true"
             :tableClasses="'table table-hover'"
             :tableTitle="'Multiple consumers found, please select a consumer'"
             :titleClasses="'text-left'"

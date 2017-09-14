@@ -5,9 +5,18 @@
 <script>
   export default {
     methods: {
+      /**
+       * clickFunction will trigger on click of the span icon. ClickFunction does not need to change the value of the
+       * contentVisible variable, because it is calling the parent container to update the contentVisible value. This
+       * component has a watcher on the isContentVisible variable, and will render the span based on the contentVisible
+       * value of the parent component.
+       */
       clickFunctions: function () {
-        this.showComponent = !this.showComponent
-        this.clickFunction()
+        this.parentToggleFunction()
+        this.renderArrow()
+      },
+      parentUpdatedIsContentVisible: function () {
+        this.contentVisible = !this.contentVisible
         this.renderArrow()
       },
       /**
@@ -15,18 +24,25 @@
        * value is true, display a down arrow to indicate that clicking the icon will show the component.
        */
       renderArrow: function () {
-        this.searchMenuArrowClasses = (this.showComponent && this.showComponent === true)
-            ? 'glyphicon glyphicon-menu-down' : 'glyphicon glyphicon-menu-up'
+        this.searchMenuArrowClasses = (this.contentVisible && this.contentVisible === true)
+            ? 'glyphicon glyphicon-menu-up' : 'glyphicon glyphicon-menu-down'
       }
     },
     name: 'upDownToggleComponent',
-    props: ['initialVisible', 'clickFunction'],
+    props: ['isContentVisible', 'parentToggleFunction'],
+    watch: {
+      /* Watch the isContentVisible variable for changes made by the parent component. If a change is made, call the
+       * parentUpdatedIsContentVisible function to handle the change. */
+      'isContentVisible': function () {
+        this.parentUpdatedIsContentVisible()
+      }
+    },
     data () {
       return {
-        showComponent: (!this.initialVisible || this.initialVisible === false),
+        contentVisible: (this.isContentVisible && this.isContentVisible === true),
         searchMenuArrowClasses:
-          (!this.initialVisible || this.initialVisible === false)
-            ? 'glyphicon glyphicon-menu-down' : 'glyphicon glyphicon-menu-up'
+          (this.isContentVisible && this.isContentVisible === true)
+            ? 'glyphicon glyphicon-menu-up' : 'glyphicon glyphicon-menu-down'
       }
     }
   }

@@ -5,8 +5,8 @@
         <div class="col-sm-12">
           <h3>Search For Consumer
             <up-down-toggle-component
-              :clickFunction="setContentVisible"
-              :initialVisible="contentVisible"
+              :isContentVisible="contentVisible"
+              :parentToggleFunction="upDownToggleComponentClickedFunction"
             ></up-down-toggle-component>
           </h3>
         </div>
@@ -41,6 +41,7 @@
               :textInputTitle="'Email Address'"
               :titleClasses="'cust-marg-bot-0 cust-marg-top-5'"
             ></text-input-field-component>
+            <!-- Search button -->
             <button-component
               :buttonClasses="''"
               :buttonTitle="'Search'"
@@ -68,6 +69,9 @@
       'up-down-toggle-component': UpDownToggleComponent
     },
     methods: {
+      upDownToggleComponentClickedFunction: function () {
+        this.setContentVisible()
+      },
       searchConsumerFunction: function () {
         console.log('Searching for consumers...')
       },
@@ -76,10 +80,12 @@
       }
     },
     name: 'searchConsumerComponent',
-    props: ['consumers', 'initialVisible'],
+    props: ['consumers', 'isContentVisible'],
+    watcher: {
+    },
     data () {
       return {
-        contentVisible: (this.initialVisible === true)
+        contentVisible: (this.isContentVisible === true)
       }
     }
   }
