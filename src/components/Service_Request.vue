@@ -13,6 +13,7 @@
           :consumers="consumers"
           :isContentVisible="false"
         ></search-consumer_component>
+        <!-- This will add and remove itself to/from the DOM on update of the consumers object. Fancy! ++-->
         <div v-if="consumers && consumers.length > 0">
           <table5-selectable_component
             :clickFunction="consumerTableSelectClickFunction"

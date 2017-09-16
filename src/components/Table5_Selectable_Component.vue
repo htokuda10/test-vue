@@ -8,8 +8,9 @@
         ></up-down-toggle-component>
       </h4>
       <div class="row" v-show="contentVisible">
-        <table :class="tableClasses">
-          <thead>
+        <div class="col-sm-12">
+          <table :class="tableClasses">
+            <thead>
             <tr>
               <th>
                 {{ columnName1 }}
@@ -27,17 +28,18 @@
                 {{ columnName5 }}
               </th>
             </tr>
-          </thead>
-          <tbody>
-          <tr v-for="dataObject in dataArray" v-on:click="rowClickedFunction(dataObject)">
-            <td>{{ dataObject[columnKey1] }}</td>
-            <td>{{ dataObject[columnKey2] }}</td>
-            <td>{{ dataObject[columnKey3] }}</td>
-            <td>{{ dataObject[columnKey4] }}</td>
-            <td>{{ dataObject[columnKey5] }}</td>
-          </tr>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+            <tr v-for="dataObject in dataArray" v-on:click="rowClickedFunction(dataObject)">
+              <td>{{ dataObject[columnKey1] }}</td>
+              <td>{{ dataObject[columnKey2] }}</td>
+              <td>{{ dataObject[columnKey3] }}</td>
+              <td>{{ dataObject[columnKey4] }}</td>
+              <td>{{ dataObject[columnKey5] }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
