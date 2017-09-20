@@ -29,6 +29,15 @@ const state = {
     // street: '1 Street Ave.',
     // zipCode: '80123'
   },
+  redditPosts: {
+    // [
+    //   title: '',
+    //   author: '',
+    //   comments: '',
+    //   score: '',
+    //   created: ''
+    // ]
+  },
   serviceProfessional: {
     // affiliate: 'Thor',
     // callUniqueId: '123123123',

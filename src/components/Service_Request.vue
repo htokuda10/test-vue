@@ -9,13 +9,13 @@
       <div class="col-sm-9">
         <!-- TODO The initial visible value can be set based on retrieved values. This will be hardcoded
         for now for testing functionality. -->
-        <search-consumer_component
+        <search-consumer-component
           :consumers="getConsumers"
           :isContentVisible="false"
-        ></search-consumer_component>
+        ></search-consumer-component>
         <!-- This will add and remove itself to/from the DOM on update of the consumers object. Fancy! ++-->
         <div v-if="getConsumers && getConsumers.length > 0">
-          <table5-selectable_component
+          <table5-selectable-component
             :clickFunction="consumerTableSelectClickFunction"
             :columnKey1="'firstName'"
             :columnKey2="'lastName'"
@@ -33,13 +33,61 @@
             :tableClasses="'table table-hover'"
             :tableTitle="'Multiple consumers found, please select a consumer'"
             :titleClasses="'text-left'"
-          ></table5-selectable_component>
+          ></table5-selectable-component>
         </div>
         <additional-project-info-component></additional-project-info-component>
       </div>
       <div class="col-sm-3">
         <service-professional-info-card-component></service-professional-info-card-component>
         <consumer-info-card-component></consumer-info-card-component>
+      </div>
+    </div>
+    <!-- Reddit! -->
+    <div class="row">
+      <div class="col-sm-12">
+        <div v-if="getRedditPosts && getRedditPosts.length > 0">
+          <table5-selectable-component
+            :clickFunction="redditTableSelectClickFunction"
+            :columnKey1="'title'"
+            :columnKey2="'author'"
+            :columnKey3="'comments'"
+            :columnKey4="'score'"
+            :columnKey5="'created'"
+            :columnName1="'Title'"
+            :columnName2="'Author'"
+            :columnName3="'Score'"
+            :columnName4="'# of Comments'"
+            :columnName5="'Created'"
+            :dataArray="getRedditPosts"
+            :isContentVisible="true"
+            :isTabCollapsible="true"
+            :tableClasses="'table table-hover'"
+            :tableTitle="'Reddit Posts'"
+            :titleClasses="'text-left'"
+          ></table5-selectable-component>
+        </div>
+        <div class="row">
+          <div class="col-sm-5">
+            <text-input-field-component
+              :inputBindValue="inputBindValue"
+              :containerClasses="'form-group'"
+              :idValue="'searchTextInputField'"
+              :inputClasses="'form-control'"
+              @keyup="setRedditInputKeyUp"
+              :placeholderValue="'Search for...'"
+              :textInputTitle="'Search'"
+              :titleClasses="''"
+            ></text-input-field-component>
+            <button-component
+              :buttonClasses="'btn btn-primary'"
+              :buttonTitle="'Get Reddit Posts!'"
+              :buttonValue="'getRedditPosts'"
+              :clickFunction="getRedditPostsFunction"
+              :containerClasses="'input-group-btn text-right align-baseline'"
+              :idValue="'getRedditPostBtn'"
+            ></button-component>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -52,12 +100,15 @@
   import ServiceProfessionalInfoCardComponent from '@/components/Service_Professional_Info_Card_Component'
   import Table5SelectableComponent from '@/components/Table5_Selectable_Component'
   import { mapGetters } from 'vuex'
+  import ButtonComponent from './Button_Component.vue'
+  import TextInputFieldComponent from './Text_Input_Field_Component.vue'
 
   export default {
     computed: {
       ...mapGetters([
         'getConsumers',
         'getConsumerSelected',
+        'getRedditPosts',
         'getServiceProfessional'
       ])
       // These can be aliased by creating an object of key-values(key = alias, value = getter string).
@@ -67,12 +118,15 @@
       //   serviceProfessionalGetter: 'getServiceProfessional'
       // })
     },
+    /* Not defining an alias, will use the component 'name' to the DOM tag. */
     components: {
-      'additional-project-info-component': AdditionalProjectInfoComponent,
-      'consumer-info-card-component': ConsumerInfoCardComponent,
-      'search-consumer_component': SearchConsumerComponent,
-      'service-professional-info-card-component': ServiceProfessionalInfoCardComponent,
-      'table5-selectable_component': Table5SelectableComponent
+      TextInputFieldComponent,
+      ButtonComponent,
+      AdditionalProjectInfoComponent,
+      ConsumerInfoCardComponent,
+      SearchConsumerComponent,
+      ServiceProfessionalInfoCardComponent,
+      Table5SelectableComponent
     },
     methods: {
       /**
@@ -81,11 +135,21 @@
        */
       consumerTableSelectClickFunction: function (selectedObject) {
         this.$store.dispatch('setConsumerSelected', selectedObject)
+      },
+      setRedditInputKeyUp: function (inputValue) {
+        this.redditInputValue = inputValue
+      },
+      getRedditPostsFunction: function () {
+        this.$store.dispatch('getRedditPosts', this.redditInputValue)
+      },
+      redditTableSelectClickFunction: function (selectedObject) {
+        // Do nothing with this right now.
       }
     },
     name: 'serviceRequest',
     data () {
       return {
+        inputBindValue: ''
       }
     }
   }

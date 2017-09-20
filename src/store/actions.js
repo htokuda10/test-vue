@@ -14,3 +14,19 @@ export const getInitialData = ({ commit }) => {
 export const setConsumerSelected = ({ commit }, consumerObject) => {
   commit(MutationTypes.SET_CONSUMER_SELECTED, consumerObject)
 }
+
+export const getRedditPosts = ({ commit }, queryString) => {
+  Api.getRedditPosts(redditPosts => {
+    if (redditPosts && redditPosts.data && redditPosts.data.data && redditPosts.data.data.children) {
+      let parsedArray = redditPosts.data.data.children
+      let deepParsedArray = []
+      parsedArray.forEach(function (value) {
+        if (value.data) {
+          deepParsedArray.push(value.data)
+        }
+      })
+      commit(MutationTypes.SET_REDDIT_POSTS, deepParsedArray)
+    }
+    // Second action function argument is here (the end of the anonymous function declaration).
+  }, queryString)
+}

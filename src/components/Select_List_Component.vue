@@ -1,6 +1,6 @@
 <template>
   <div :class="containerClasses">
-    <p :class="titleClasses">{{ selectListTitle }}:</p>
+    <label :for="idValue" :class="titleClasses">{{ selectListTitle }}:</label>
     <select :id="idValue">
       <option v-for="(value, key) in selectData" :value=key>{{ value }}</option>
     </select>

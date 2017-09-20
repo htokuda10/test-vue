@@ -13,5 +13,9 @@ export default {
   // Set the service professional when a service professional is returned in a request, to state.
   [MutationTypes.SET_SERVICE_PROFESSIONAL] (state, serviceProfessionalObject) {
     state.serviceProfessional = serviceProfessionalObject
+  },
+  // Set the Reddit posts when posts are returned in a request, to state.
+  [MutationTypes.SET_REDDIT_POSTS] (state, redditPosts) {
+    state.redditPosts = redditPosts
   }
 }

@@ -1,16 +1,26 @@
 <template>
   <div :class="containerClasses">
-    <p :class="titleClasses">{{ textInputTitle }}:</p>
-    <input :id="idValue" :class="inputClasses" :placeholder="placeholderValue" type="text">
+    <label :for="idValue" :class="titleClasses">{{ textInputTitle }}:</label>
+    <input :id="idValue" :class="inputClasses" :placeholder="placeholderValue" type="text" v-on:keyup="onKeyUp">
   </div>
 </template>
 
 <script>
   export default {
-    props: ['containerClasses', 'idValue', 'inputClasses', 'placeholderValue', 'textInputTitle', 'titleClasses'],
-    name: 'inputTextFieldComponent',
+    methods: {
+      onKeyUp (event) {
+        let emitValue = (event && event.target && event.target.value) ? event.target.value : ''
+        // Emit a custom keyup event that the parent component can listen for. 'keyup' is the event key in this case.
+        this.$emit('keyup', emitValue)
+      }
+    },
+    name: 'textInputFieldComponent',
+    props: ['containerClasses', 'idValue', 'inputBindValue', 'inputClasses', 'placeholderValue', 'textInputTitle',
+      'titleClasses'],
     data () {
-      return {}
+      return {
+        bindValue: this.inputBindValue
+      }
     }
   }
 </script>
