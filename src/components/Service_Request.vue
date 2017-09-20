@@ -50,8 +50,8 @@
             :clickFunction="redditTableSelectClickFunction"
             :columnKey1="'title'"
             :columnKey2="'author'"
-            :columnKey3="'comments'"
-            :columnKey4="'score'"
+            :columnKey3="'score'"
+            :columnKey4="'num_comments'"
             :columnKey5="'created'"
             :columnName1="'Title'"
             :columnName2="'Author'"
@@ -69,13 +69,14 @@
         <div class="row">
           <div class="col-sm-5">
             <text-input-field-component
+              @enter="getRedditPostsFunction"
               :inputBindValue="inputBindValue"
               :containerClasses="'form-group'"
               :idValue="'searchTextInputField'"
               :inputClasses="'form-control'"
               @keyup="setRedditInputKeyUp"
               :placeholderValue="'Search for...'"
-              :textInputTitle="'Search'"
+              :textInputTitle="'Search Reddit \'Aww\''"
               :titleClasses="''"
             ></text-input-field-component>
             <button-component
