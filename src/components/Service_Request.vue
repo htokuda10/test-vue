@@ -10,11 +10,11 @@
         <!-- TODO The initial visible value can be set based on retrieved values. This will be hardcoded
         for now for testing functionality. -->
         <search-consumer_component
-          :consumers="consumers"
+          :consumers="getConsumers"
           :isContentVisible="false"
         ></search-consumer_component>
         <!-- This will add and remove itself to/from the DOM on update of the consumers object. Fancy! ++-->
-        <div v-if="consumers && consumers.length > 0">
+        <div v-if="getConsumers && getConsumers.length > 0">
           <table5-selectable_component
             :clickFunction="consumerTableSelectClickFunction"
             :columnKey1="'firstName'"
@@ -27,7 +27,7 @@
             :columnName3="'State'"
             :columnName4="'Phone'"
             :columnName5="'Email'"
-            :dataArray="consumers"
+            :dataArray="getConsumers"
             :isContentVisible="true"
             :isTabCollapsible="true"
             :tableClasses="'table table-hover'"
@@ -38,12 +38,8 @@
         <additional-project-info-component></additional-project-info-component>
       </div>
       <div class="col-sm-3">
-        <service-professional-info-card-component
-          :spData="serviceProfessional"
-        ></service-professional-info-card-component>
-        <consumer-info-card-component
-          :consumerData="consumerSelected"
-        ></consumer-info-card-component>
+        <service-professional-info-card-component></service-professional-info-card-component>
+        <consumer-info-card-component></consumer-info-card-component>
       </div>
     </div>
   </div>
@@ -54,12 +50,23 @@
   import ConsumerInfoCardComponent from '@/components/Consumer_Info_Card_Component'
   import SearchConsumerComponent from '@/components/Search_Consumer_Component'
   import ServiceProfessionalInfoCardComponent from '@/components/Service_Professional_Info_Card_Component'
-  import ServiceRequestDataClass from '../../static/js/ServiceRequestData'
   import Table5SelectableComponent from '@/components/Table5_Selectable_Component'
-
-  let ServiceRequestData = new ServiceRequestDataClass()
+  import { mapGetters } from 'vuex'
 
   export default {
+    computed: {
+      ...mapGetters([
+        'getConsumers',
+        'getConsumerSelected',
+        'getServiceProfessional'
+      ])
+      // These can be aliased by creating an object of key-values(key = alias, value = getter string).
+      // ...mapGetters({
+      //   consumerGetter: 'getConsumers',
+      //   consumerSelectedGetter: 'getConsumerSelected',
+      //   serviceProfessionalGetter: 'getServiceProfessional'
+      // })
+    },
     components: {
       'additional-project-info-component': AdditionalProjectInfoComponent,
       'consumer-info-card-component': ConsumerInfoCardComponent,
@@ -73,15 +80,12 @@
        * in the consumer table.
        */
       consumerTableSelectClickFunction: function (selectedObject) {
-        this.consumerSelected = selectedObject
+        this.$store.dispatch('setConsumerSelected', selectedObject)
       }
     },
     name: 'serviceRequest',
     data () {
       return {
-        consumers: ServiceRequestData.getConsumersList(),
-        consumerSelected: {},
-        serviceProfessional: ServiceRequestData.getServiceProfessional()
       }
     }
   }

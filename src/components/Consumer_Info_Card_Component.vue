@@ -9,19 +9,19 @@
       <div class="panel-body">
         <div class="row">
           <div class="col-sm-12">
-            <h3 class="cust-info-name">{{ consumerData.firstName }} {{ consumerData.lastName }}</h3>
+            <h3 class="cust-info-name">{{ getConsumerSelected.firstName }} {{ getConsumerSelected.lastName }}</h3>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-6 cust-info-card">
             <h5 class="cust-info-title">ID:</h5>
-            <p>{{ consumerData.id }}</p>
+            <p>{{ getConsumerSelected.id }}</p>
             <h5 class="cust-info-title">Phone:</h5>
-            <p>{{ consumerData.phone }}</p>
+            <p>{{ getConsumerSelected.phone }}</p>
             <h5 class="cust-info-title">State: </h5>
-            <p>{{ consumerData.state }}</p>
+            <p>{{ getConsumerSelected.state }}</p>
             <h5 class="cust-info-title">Email:</h5>
-            <p>{{ consumerData.email }}</p>
+            <p>{{ getConsumerSelected.email }}</p>
           </div>
           <div class="col-sm-6 cust-info-card">
             <h5 class="cust-info-title">Misc1:</h5>
@@ -40,9 +40,18 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+
   export default{
+    computed: {
+      ...mapGetters([
+        'getConsumerSelected'
+      ])
+    },
+    methods: {
+    },
     name: 'consumerInfoCardComponent',
-    props: ['consumerData'],
+    props: [],
     data () {
       return {}
     }

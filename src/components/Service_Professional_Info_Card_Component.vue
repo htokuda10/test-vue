@@ -9,31 +9,31 @@
       <div class="panel-body">
         <div class="row">
           <div class="col-sm-12">
-            <h3 class="cust-info-name">{{ spData.spName }}</h3>
+            <h3 class="cust-info-name">{{ getServiceProfessional.spName }}</h3>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-6">
             <h5 class="cust-info-title">ID:</h5>
-            <p>{{ spData.spId }}</p>
+            <p>{{ getServiceProfessional.spId }}</p>
             <h5 class="cust-info-title">Phone:</h5>
-            <p>{{ spData.spPhone }}</p>
+            <p>{{ getServiceProfessional.spPhone }}</p>
             <h5 class="cust-info-title">Location:</h5>
-            <p>{{ spData.spLocation }}</p>
+            <p>{{ getServiceProfessional.spLocation }}</p>
             <h5 class="cust-info-title">Total Ratings:</h5>
-            <p>{{ spData.spRatings }}</p>
+            <p>{{ getServiceProfessional.spRatings }}</p>
             <h5 class="cust-info-title">Rating:</h5>
-            <p>{{ spData.spRating }}</p>
+            <p>{{ getServiceProfessional.spRating }}</p>
           </div>
           <div class="col-sm-6">
             <h5 class="cust-info-title">Affiliate:</h5>
-            <p>{{ spData.affiliate }}</p>
+            <p>{{ getServiceProfessional.affiliate }}</p>
             <h5 class="cust-info-title">Number Called:</h5>
-            <p>{{ spData.numberCalled }}</p>
+            <p>{{ getServiceProfessional.numberCalled }}</p>
             <h5 class="cust-info-title">Call Unique ID:</h5>
-            <p>{{ spData.callUniqueId }}</p>
+            <p>{{ getServiceProfessional.callUniqueId }}</p>
             <h5 class="cust-info-title">Server ID:</h5>
-            <p>{{ spData.serverId }}</p>
+            <p>{{ getServiceProfessional.serverId }}</p>
           </div>
         </div>
       </div>
@@ -42,9 +42,16 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+
   export default{
+    computed: {
+      ...mapGetters([
+        'getServiceProfessional'
+      ])
+    },
     name: 'serviceProfessionalInfoCardComponent',
-    props: ['spData'],
+    props: [],
     data () {
       return {}
     }
